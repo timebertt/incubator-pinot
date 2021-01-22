@@ -106,6 +106,7 @@ public class SegmentGeneratorConfig implements Serializable {
   private boolean _skipTimeValueCheck = false;
   private boolean _nullHandlingEnabled = false;
   private boolean _failOnEmptySegment = false;
+  private boolean _isIntermediateSegmentRecordReader = false;
 
   // constructed from FieldConfig
   private Map<String, Map<String, String>> _columnProperties = new HashMap<>();
@@ -678,5 +679,13 @@ public class SegmentGeneratorConfig implements Serializable {
 
   public void setFailOnEmptySegment(boolean failOnEmptySegment) {
     _failOnEmptySegment = failOnEmptySegment;
+  }
+
+  public boolean isIntermediateSegmentRecordReader() {
+    return _isIntermediateSegmentRecordReader;
+  }
+
+  public void setIntermediateSegmentRecordReader(boolean intermediateSegmentRecordReader) {
+    _isIntermediateSegmentRecordReader = intermediateSegmentRecordReader;
   }
 }
