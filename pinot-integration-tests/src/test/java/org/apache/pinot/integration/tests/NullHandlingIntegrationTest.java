@@ -72,6 +72,21 @@ public class NullHandlingIntegrationTest extends BaseClusterIntegrationTestSet {
     waitForAllDocsLoaded(10_000L);
   }
 
+  @AfterClass
+  public void tearDown()
+      throws Exception {
+    dropOfflineTable(getTableName());
+    // Stop Kafka
+    stopKafka();
+
+    // Stop the Pinot cluster
+    stopServer();
+    stopBroker();
+    stopController();
+    stopZk();
+    FileUtils.deleteDirectory(_tempDir);
+  }
+
   @Override
   protected String getAvroTarFileName() {
     return "avro_data_with_nulls.tar.gz";
